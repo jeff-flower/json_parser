@@ -8,5 +8,4 @@ gem "rubocop", "~> 1.75"
 gem "rubocop-rspec", "~> 3.5"
 gem "pry-byebug", "~> 3.11"
 gem "rspec", "~> 3.13"
-
 gem "nyan-cat-formatter", "~> 0.12.0"

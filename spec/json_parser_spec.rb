@@ -6,13 +6,13 @@ describe JsonParser do
     it 'recognizes {} as valid JSON' do
       input = '{}'
 
-      expect(JSONParser.valid?(input)).to be_true
+      expect(JsonParser::JSONParser.valid?(input)).to be true
     end
 
-    xit 'recognizes {{ as invalid JSON' do
+    it 'recognizes {{ as invalid JSON' do
       input = '{{'
 
-      expect(JSONParser.valid?(input)).to be_false
+      expect(JsonParser::JSONParser.valid?(input)).to be false
     end
 
     # NEXT: use tests from dropbox (see link in challenge)
