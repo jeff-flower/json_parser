@@ -1,6 +1,8 @@
-#JsonParser module
+# JsonParser module
 module JsonParser
-  def self.valid?(string)
-    false
+  class JSONParser
+    def self.valid?(string)
+      string.start_with?('{') && string.end_with?('}')
+    end
   end
 end
