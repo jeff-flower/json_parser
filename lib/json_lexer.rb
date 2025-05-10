@@ -9,11 +9,12 @@ module JsonLexer
         when 'LEFT_BRACE'
           tokens << ['{', 'LEFT_BRACE']
         when 'RIGHT_BRACE'
-          tokens << ['{', 'RIGHT_BRACE']
+          tokens << ['}', 'RIGHT_BRACE']
         when 'QUOTATION'
           if str_started
             tokens << [str, 'STRING']
             str_started = false
+            str = ''
           else
             str_started = true
           end
