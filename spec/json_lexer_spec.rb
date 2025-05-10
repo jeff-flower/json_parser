@@ -68,12 +68,28 @@ describe JsonLexer do
 
       it 'identifies a string-string pair inside curly braces' do
         tokens = JsonLexer::JSONLexer.lex('{"key":"value"}')
-        expect(tokens).to eq([['{', 'LEFT_BRACE'], %w[key STRING], [':', 'COLON'], %w[value STRING], ['}', 'RIGHT_BRACE']])
+        expect(tokens).to eq(
+          [
+            ['{', 'LEFT_BRACE'],
+            %w[key STRING],
+            [':', 'COLON'],
+            %w[value STRING],
+            ['}', 'RIGHT_BRACE']
+          ]
+        )
       end
 
       it 'identifies a string-string pair inside curly braces with whitespace' do
         tokens = JsonLexer::JSONLexer.lex('{ "key" : "value" }')
-        expect(tokens).to eq([['{', 'LEFT_BRACE'], %w[key STRING], [':', 'COLON'], %w[value STRING], ['}', 'RIGHT_BRACE']])
+        expect(tokens).to eq(
+          [
+            ['{', 'LEFT_BRACE'],
+            %w[key STRING],
+            [':', 'COLON'],
+            %w[value STRING],
+            ['}', 'RIGHT_BRACE']
+          ]
+        )
       end
     end
   end
