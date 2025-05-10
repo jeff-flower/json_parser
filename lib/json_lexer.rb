@@ -5,7 +5,7 @@ module JsonLexer
       str_started = false
       str = ''
       string.each_char do |char|
-        case identify_char(char)
+        case char_type(char)
         when 'LEFT_BRACE'
           tokens << ['{', 'LEFT_BRACE']
         when 'RIGHT_BRACE'
@@ -19,6 +19,11 @@ module JsonLexer
           end
         when 'CHARACTER'
           str << char
+        when 'COLON'
+          tokens << [char, 'COLON']
+        when 'WHITESPACE'
+          # do nothing and keep going
+          nil
         when 'UNKNOWN'
           tokens << [char, 'UNKNOWN']
         end
@@ -29,7 +34,7 @@ module JsonLexer
 
     # TODO: consider using a map instead
     # i.e. {'{': ['{', 'LEFT_BRACE']}
-    def self.identify_char(char)
+    def self.char_type(char)
       case char
       when '{'
         'LEFT_BRACE'
@@ -39,6 +44,10 @@ module JsonLexer
         'QUOTATION'
       when /\w/
         'CHARACTER'
+      when ':'
+        'COLON'
+      when /\s/
+        'WHITESPACE'
       else
         'UNKNOWN'
       end
