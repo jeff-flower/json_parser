@@ -22,6 +22,8 @@ module JsonLexer
           str << char
         when 'COLON'
           tokens << [char, 'COLON']
+        when 'COMMA'
+          tokens << [char, 'COMMA']
         when 'WHITESPACE'
           # do nothing and keep going
           nil
@@ -33,8 +35,9 @@ module JsonLexer
       tokens
     end
 
+    # TODO: enum for tokens
     # TODO: consider using a map instead
-    # i.e. {'{': ['{', 'LEFT_BRACE']}
+    # i.e. {'{': 'LEFT_BRACE'}
     def self.char_type(char)
       case char
       when '{'
@@ -47,6 +50,8 @@ module JsonLexer
         'CHARACTER'
       when ':'
         'COLON'
+      when ','
+        'COMMA'
       when /\s/
         'WHITESPACE'
       else

@@ -55,6 +55,13 @@ describe JsonLexer do
       end
     end
 
+    context 'when the input is a comma' do
+      it 'identifies a comma' do
+        tokens = JsonLexer::JSONLexer.lex(',')
+        expect(tokens).to eq([[',', 'COMMA']])
+      end
+    end
+
     context 'with combinations of tokens' do
       it 'identifies a string-string pair' do
         tokens = JsonLexer::JSONLexer.lex('"key":"value"')
