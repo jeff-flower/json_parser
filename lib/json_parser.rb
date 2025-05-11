@@ -4,6 +4,8 @@ require './lib/json_lexer'
 module JsonParser
   class JSONParser
     def self.valid?(string)
+      return false unless string.length.positive?
+
       stack = []
       tokens = JsonLexer::JSONLexer.lex(string)
       tokens.each do |token|
