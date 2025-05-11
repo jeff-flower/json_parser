@@ -4,12 +4,12 @@ require './lib/json_lexer'
 module JsonParser
   class JSONParser
     def self.valid?(string)
+      # empty string is invalid json
       return false unless string.length.positive?
 
       stack = []
       tokens = JsonLexer::JSONLexer.lex(string)
       tokens.each do |token|
-        # ???
         token_type = token[1]
         case token_type
         when 'LEFT_BRACE'
