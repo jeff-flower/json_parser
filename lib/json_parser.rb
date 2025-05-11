@@ -16,6 +16,19 @@ module JsonParser
           stack.push(token)
         when 'RIGHT_BRACE'
           stack.pop
+        when 'STRING'
+          top = stack.last
+          if top[1] == 'COLON'
+            # remove colon and the string before it
+            stack.pop
+            stack.pop
+          else
+            stack.push(token)
+          end
+        when 'COLON'
+          stack.push(token)
+        when 'COMMA'
+          stack.push(token)
         end
       end
 

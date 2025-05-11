@@ -36,6 +36,18 @@ describe JsonParser do
         expect(JsonParser::JSONParser.valid?(input)).to be true
       end
 
+      it 'recognizes a non-string key as invalid json' do
+        input = '{"key": "value",\nkey2: "value"}'
+
+        expect(JsonParser::JSONParser.valid?(input)).to be false
+      end
+
+      it 'recognizes two key-value pairs as valid json' do
+        input = '{"key": "value",\n"key2": "value"}'
+
+        expect(JsonParser::JSONParser.valid?(input)).to be true
+      end
+
       # NEXT: Test cases for spec/testCases/step2/invalid2.json and valid2.json
     end
 
