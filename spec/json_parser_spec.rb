@@ -47,10 +47,8 @@ describe JsonParser do
 
         expect(JsonParser::JSONParser.valid?(input)).to be true
       end
-
-      # NEXT: Test cases for spec/testCases/step2/invalid2.json and valid2.json
     end
 
-    # NEXT: use tests from dropbox (see link in challenge)
+    # WAY LATER: read in test files
   end
 end
