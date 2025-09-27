@@ -12,22 +12,22 @@ module JsonParser
       tokens.each do |token|
         token_type = token[1]
         case token_type
-        when 'LEFT_BRACE'
+        when :LEFT_BRACE
           stack.push(token)
-        when 'RIGHT_BRACE'
+        when :RIGHT_BRACE
           stack.pop
-        when 'STRING'
+        when :STRING
           top = stack.last
-          if top[1] == 'COLON'
+          if top[1] == :COLON
             # remove colon and the string before it
             stack.pop
             stack.pop
           else
             stack.push(token)
           end
-        when 'COLON'
+        when :COLON
           stack.push(token)
-        when 'COMMA'
+        when :COMMA
           stack.push(token)
         end
       end

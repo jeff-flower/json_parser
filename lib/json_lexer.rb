@@ -6,29 +6,29 @@ module JsonLexer
       str = ''
       string.each_char do |char|
         case char_type(char)
-        when 'LEFT_BRACE'
-          tokens << ['{', 'LEFT_BRACE']
-        when 'RIGHT_BRACE'
-          tokens << ['}', 'RIGHT_BRACE']
-        when 'QUOTATION'
+        when :LEFT_BRACE
+          tokens << ['{', :LEFT_BRACE]
+        when :RIGHT_BRACE
+          tokens << ['}', :RIGHT_BRACE]
+        when :QUOTATION
           if str_started
-            tokens << [str, 'STRING']
+            tokens << [str, :STRING]
             str_started = false
             str = ''
           else
             str_started = true
           end
-        when 'CHARACTER'
+        when :CHARACTER
           str << char
-        when 'COLON'
-          tokens << [char, 'COLON']
-        when 'COMMA'
-          tokens << [char, 'COMMA']
-        when 'WHITESPACE'
+        when :COLON
+          tokens << [char, :COLON]
+        when :COMMA
+          tokens << [char, :COMMA]
+        when :WHITESPACE
           # do nothing and keep going
           nil
-        when 'UNKNOWN'
-          tokens << [char, 'UNKNOWN']
+        when :UNKNOWN
+          tokens << [char, :UNKNOWN]
         end
       end
 
@@ -41,21 +41,21 @@ module JsonLexer
     def self.char_type(char)
       case char
       when '{'
-        'LEFT_BRACE'
+        :LEFT_BRACE
       when '}'
-        'RIGHT_BRACE'
+        :RIGHT_BRACE
       when '"'
-        'QUOTATION'
+        :QUOTATION
       when /\w/
-        'CHARACTER'
+        :CHARACTER
       when ':'
-        'COLON'
+        :COLON
       when ','
-        'COMMA'
+        :COMMA
       when /\s/
-        'WHITESPACE'
+        :WHITESPACE
       else
-        'UNKNOWN'
+        :UNKNOWN
       end
     end
   end
